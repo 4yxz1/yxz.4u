@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yxz.hm</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #191919 0%,
+            #090909 45%,
+            #000000 100%
+        );
+}
+
+body::after {
+    content: "";
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(255,255,255,0.035);
+
+    filter: blur(110px);
+
+    border-radius: 50%;
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+/* =========================
+   INTRO
+========================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #050505;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-box {
+    width: min(680px, 88%);
+
+    padding: 42px 45px;
+
+    border: 1px solid rgba(255,255,255,0.11);
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.7),
+        inset 0 0 30px rgba(255,255,255,0.015);
+
+    animation:
+        introAppear 1.2s ease forwards;
+}
+
+@keyframes introAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.terminal {
+    width: 100%;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size:
+        clamp(21px, 4vw, 35px);
+
+    line-height: 1.8;
+}
+
+.line {
+    min-height: 1.8em;
+    white-space: nowrap;
+}
+
+.prompt {
+    color: #555;
+}
+
+.cursor {
+    display: inline-block;
+
+    width: 8px;
+    height: 0.9em;
+
+    margin-left: 3px;
+
+    background: #fff;
+
+    vertical-align: -2px;
+
+    animation:
+        blink 0.75s infinite;
+}
+
+@keyframes blink {
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* =========================
+   MAIN
+========================= */
+
+#main {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    opacity: 0;
+
+    transform: scale(0.96);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
+
+#main.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* =========================
+   THREE BOXES
+========================= */
+
+.container {
+    width: min(1100px, 100%);
+
+    display: grid;
+
+    grid-template-columns:
+        0.9fr
+        1fr
+        1.25fr;
+
+    gap: 16px;
+}
+
+.card {
+    min-height: 420px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.09);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,0.45);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    border-color:
+        rgba(255,255,255,0.2);
+
+    background:
+        rgba(255,255,255,0.055);
+}
+
+/* =========================
+   MUSIC
+========================= */
+
+.music-icon {
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    font-size: 35px;
+
+    margin-bottom: 23px;
+
+    animation:
+        musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+
+    50% {
+        box-shadow:
+            0 0 50px
+            rgba(255,255,255,0.12);
+    }
+}
+
+.music-title {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.music-subtitle {
+    margin-top: 7px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.wave {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 4px;
+
+    margin-top: 22px;
+}
+
+.wave span {
+    width: 3px;
+    height: 9px;
+
+    border-radius: 10px;
+
+    background: #aaa;
+
+    animation:
+        waveMove 1s ease-in-out infinite;
+}
+
+.wave span:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.wave span:nth-child(3) {
+    animation-delay: .2s;
+}
+
+.wave span:nth-child(4) {
+    animation-delay: .3s;
+}
+
+.wave span:nth-child(5) {
+    animation-delay: .4s;
+}
+
+.wave span:nth-child(6) {
+    animation-delay: .3s;
+}
+
+.wave span:nth-child(7) {
+    animation-delay: .2s;
+}
+
+@keyframes waveMove {
+
+    50% {
+        height: 34px;
+    }
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+    width: 160px;
+    height: 160px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.85);
+
+    box-shadow:
+        0 0 50px
+        rgba(255,255,255,0.08);
+
+    animation:
+        profileFloat 4s ease-in-out infinite;
+}
+
+@keyframes profileFloat {
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+.username {
+    margin-top: 21px;
+
+    font-size: 25px;
+
+    font-weight: 600;
+}
+
+.website {
+    margin-top: 7px;
+
+    color: #777;
+
+    font-family: Consolas, monospace;
+
+    font-size: 13px;
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+
+.socials {
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.social {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.social:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(255,255,255,0.3);
+}
+
+.social img {
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+
+    filter:
+        grayscale(1)
+        brightness(2);
+}
+
+/* =========================
+   SERVER SIDE
+========================= */
+
+.server-title {
+    font-size: 22px;
+
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+.servers {
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.server {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 13px;
+
+    text-decoration: none;
+
+    color: white;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 17px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.server:hover {
+    transform: translateX(5px);
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border-color:
+        rgba(255,255,255,0.2);
+}
+
+.server-logo {
+    width: 58px;
+    height: 58px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    margin-right: 14px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+}
+
+.server-info {
+    text-align: left;
+}
+
+.server-name {
+    font-size: 17px;
+
+    font-weight: 600;
+}
+
+.server-link {
+    color: #666;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 850px) {
+
+    body {
+        overflow-y: auto;
+    }
+
+    #main {
+        padding: 20px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+
+        max-width: 450px;
+    }
+
+    .card {
+        min-height: 330px;
+    }
+
+    .intro-box {
+        padding: 30px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div id="intro">
+
+
+<div class="intro-box">
+
+    <div class="terminal">
+
+        <div class="line">
+            <span class="prompt">&gt; </span>
+            <span id="text1"></span>
+            <span class="cursor"></span>
+        </div>
+
+        <div class="line">
+            <span class="prompt">&gt; </span>
+            <span id="text2"></span>
+        </div>
+
+        <div class="line">
+            <span class="prompt">&gt; </span>
+            <span id="text3"></span>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- =========================
+     MAIN WEBSITE
+========================= -->
+
+<main id="main">
+
+<div class="container">
+
+
+    <!-- =====================
+         LEFT: MUSIC
+    ====================== -->
+
+    <div class="card">
+
+        <div class="music-icon">
+            ♪
+        </div>
+
+        <div class="music-title">
+            zxy.mp3
+        </div>
+
+        <div class="music-subtitle">
+            now playing
+        </div>
+
+        <div class="wave">
+
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         CENTER: PROFILE
+    ====================== -->
+
+    <div class="card">
+
+        <img
+            class="profile"
+            src="xyz.png"
+            alt="4yxz_"
+        >
+
+        <div class="username">
+            4yxz_
+        </div>
+
+        <div class="website">
+            yxz.hm
+        </div>
+
+
+        <div class="socials">
+
+            <!-- DISCORD -->
+
+            <a
+                class="social"
+                href="https://discord.com"
+                target="_blank"
+                title="Discord"
+            >
+
+                <img
+                    src="https://cdn.simpleicons.org/discord/ffffff"
+                    alt="Discord"
+                >
+
+            </a>
+
+
+            <!-- ROBLOX -->
+
+            <a
+                class="social"
+                href="https://www.roblox.com/users/8547771835/profile"
+                target="_blank"
+                title="Roblox"
+            >
+
+                <img
+                    src="https://cdn.simpleicons.org/roblox/ffffff"
+                    alt="Roblox"
+                >
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================
+         RIGHT: SERVERS
+    ====================== -->
+
+    <div class="card">
+
+        <div class="server-title">
+            Servers
+        </div>
+
+        <div class="servers">
+
+
+            <!-- YGOROT -->
+
+            <a
+                class="server"
+                href="https://discord.gg/igorot"
+                target="_blank"
+            >
+
+                <img
+                    class="server-logo"
+                    src="ygr.png"
+                    alt="YGOROT"
+                >
+
+                <div class="server-info">
+
+                    <div class="server-name">
+                        YGOROT
+                    </div>
+
+                    <div class="server-link">
+                        discord.gg/igorot
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- ALFEREZ -->
+
+            <a
+                class="server"
+                href="https://discord.gg/uMA2dqQvt"
+                target="_blank"
+            >
+
+                <img
+                    class="server-logo"
+                    src="alfe.jpg"
+                    alt="ALFEREZ"
+                >
+
+                <div class="server-info">
+
+                    <div class="server-name">
+                        ALFEREZ
+                    </div>
+
+                    <div class="server-link">
+                        discord.gg/uMA2dqQvt
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</main>
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio
+id="music"
+src="zxy.mp3"
+loop
+
+> </audio>
+
+<script>
+
+/* =========================
+   INTRO TEXT
+========================= */
+
+const firstText = "Sup Man";
+const secondText = "yxz.hm";
+const loadingText = "loading";
+
+const firstElement =
+    document.getElementById("text1");
+
+const secondElement =
+    document.getElementById("text2");
+
+const loadingElement =
+    document.getElementById("text3");
+
+
+/* =========================
+   TYPING FUNCTION
+========================= */
+
+function typeText(element, text, speed) {
+
+    return new Promise(resolve => {
+
+        let index = 0;
+
+        const timer =
+            setInterval(() => {
+
+                element.textContent +=
+                    text[index];
+
+                index++;
+
+                if (index >= text.length) {
+
+                    clearInterval(timer);
+
+                    resolve();
+                }
+
+            }, speed);
+
+    });
+}
+
+
+/* =========================
+   START INTRO
+========================= */
+
+async function startIntro() {
+
+    const music =
+        document.getElementById("music");
+
+    music.volume = 0.35;
+
+
+    /*
+       Browser audio policy may prevent
+       automatic playback.
+
+       We try first.
+    */
+
+    music.play().catch(() => {
+
+        const startMusic = () => {
+
+            music.play();
+
+            document.removeEventListener(
+                "click",
+                startMusic
+            );
+
+        };
+
+        document.addEventListener(
+            "click",
+            startMusic
+        );
+
+    });
+
+
+    /* Sup Man */
+
+    await typeText(
+        firstElement,
+        firstText,
+        90
+    );
+
+
+    await new Promise(
+        resolve =>
+            setTimeout(resolve, 350)
+    );
+
+
+    /* yxz.hm */
+
+    await typeText(
+        secondElement,
+        secondText,
+        90
+    );
+
+
+    await new Promise(
+        resolve =>
+            setTimeout(resolve, 350)
+    );
+
+
+    /* loading */
+
+    await typeText(
+        loadingElement,
+        loadingText,
+        100
+    );
+
+
+    /* Loading dots */
+
+    let dots = 0;
+
+    const loadingAnimation =
+        setInterval(() => {
+
+            dots++;
+
+            if (dots > 3) {
+                dots = 0;
+            }
+
+            loadingElement.textContent =
+                "loading" +
+                ".".repeat(dots);
+
+        }, 350);
+
+
+    /*
+       Keep loading for a moment,
+       then reveal the website.
+    */
+
+    setTimeout(() => {
+
+        clearInterval(
+            loadingAnimation
+        );
+
+
+        document
+            .getElementById("intro")
+            .classList
+            .add("hide");
+
+
+        document
+            .getElementById("main")
+            .classList
+            .add("show");
+
+    }, 2200);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+window.addEventListener(
+    "load",
+    startIntro
+);
+
+</script>
+
+</body>
+</html>
